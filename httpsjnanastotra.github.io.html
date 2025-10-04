@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JnanaStotra - A Hymn of Wisdom</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #2c5530;
+            --secondary: #6b8e23;
+            --accent: #d4af37;
+            --light: #f8f9fa;
+            --dark: #1a1a1a;
+            --text: #333333;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            background-color: #fefefe;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://images.unsplash.com/photo-1547981609-4b6bf67b7d12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            color: var(--gray);
+        }
+        
+        /* How It Works */
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .step:hover {
+            transform: translateY(-10px);
+        }
+        
+        .step-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        /* Offerings */
+        .offerings {
+            background-color: #f8f9fa;
+        }
+        
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 350px;
+            transition: transform 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+        
+        .card-header h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .card-body {
+            padding: 30px 20px;
+        }
+        
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .features li:last-child {
+            border-bottom: none;
+        }
+        
+        .features li i {
+            color: var(--secondary);
+            margin-right: 10px;
+        }
+        
+        .card-footer {
+            text-align: center;
+        }
+        
+        /* About */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .cta h2 {
+            color: white;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .cta .btn {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.4rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .steps, .pricing-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step, .pricing-card {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .hero {
+                padding: 130px 0 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Jnana Stotra</a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#offerings">Offerings</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSc5ygd9J9ddIf6qmFhv0k-nYMjLV80MMSy5AkyXCUUALldNYQ/viewform?usp=sharing&ouid=117509111644367157978" class="btn btn-accent">Get Started</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Find Your Calm Through the Power of Ancient Chants</h1>
+            <p>A simple, guided way to reduce stress and find mental clarity, taught from the heart of India to your home.</p>
+            <a href="#offerings" class="btn">Explore Our Offerings</a>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works">
+        <div class="container">
+            <h2>Your Journey to a Calmer You</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <h3>Choose Your Path</h3>
+                    <p>We offer simple starting points and deeper journeys for those ready to explore more. Wherever you are, you are welcome.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Learn with a Guide</h3>
+                    <p>Through gentle online sessions, you'll learn the correct pronunciation and the beautiful meaning behind each chant.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Feel the Change</h3>
+                    <p>Weave these powerful sounds into your daily routine. Many feel a shift almost immediately—a quiet mind and a lighter heart.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offerings Section -->
+    <section class="offerings" id="offerings">
+        <div class="container">
+            <h2>Find the Practice That Fits Your Life</h2>
+            <div class="pricing-cards">
+                <!-- Foundational Tier -->
+                <div class="pricing-card">
+                    <div class="card-header">
+                        <h3>Foundational Tier: Peace & Clarity Starter Pack</h3>
+                        <div class="price">$/€ 20</div>
+                        <p>Perfect for absolute beginners</p>
+                    </div>
+                    <div class="card-body">
+                        <p>A gentle introduction to three foundational mantras for focus and calm.</p>
+                        <ul class="features">
+                            <li><i class="fas fa-check"></i> Gayatri Mantra</li>
+                            <li><i class="fas fa-check"></i> Shanti Mantra</li>
+                            <li><i class="fas fa-check"></i> Asato Ma Sadgamaya</li>
+                            <li><i class="fas fa-check"></i> Live Video Lesson</li>
+                            <li><i class="fas fa-check"></i> PDF guides</li>
+                        </ul>
+                        <div class="card-footer">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5ygd9J9ddIf6qmFhv0k-nYMjLV80MMSy5AkyXCUUALldNYQ/viewform?usp=sharing&ouid=117509111644367157978" class="btn">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mid Level Tier -->
+                <div class="pricing-card">
+                    <div class="card-header">
+                        <h3>Mid-Level Tier: Path of Strength & Guidance</h3>
+                        <div class="price">$/€ 50</div>
+                        <p>For those ready to go deeper</p>
+                    </div>
+                    <div class="card-body">
+                        <p>Two powerful chants taught in live group workshops for inner strength.</p>
+                        <ul class="features">
+                            <li><i class="fas fa-check"></i> Kalabhairav Ashtakam</li>
+                            <li><i class="fas fa-check"></i> Guru Stotram</li>
+                            <li><i class="fas fa-check"></i> Live Video Class</li>
+                            <li><i class="fas fa-check"></i> Personal guidance</li>
+                            <li><i class="fas fa-check"></i> PDF Guides</li>
+                        </ul>
+                        <div class="card-footer">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5ygd9J9ddIf6qmFhv0k-nYMjLV80MMSy5AkyXCUUALldNYQ/viewform?usp=sharing&ouid=117509111644367157978" class="btn">Choose This Path</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Advanced Tier -->
+                <div class="pricing-card">
+                    <div class="card-header">
+                        <h3>Advanced Tier: Immersive Chanting Journeys</h3>
+                        <div class="price">$/€ 100</div>
+                        <p>Deep, transformative practice</p>
+                    </div>
+                    <div class="card-body">
+                        <p>Multi-week courses to master profound texts for lasting inner peace.</p>
+                        <ul class="features">
+                            <li><i class="fas fa-check"></i> Vishnu Sahasranamam</li>
+                            <li><i class="fas fa-check"></i> Hanuman Chalisa</li>
+                            <li><i class="fas fa-check"></i> Shri Raghavendra Stotra</li>
+                            <li><i class="fas fa-check"></i> Live Small group courses</li>
+                            <li><i class="fas fa-check"></i> Personalized feedback</li>
+                        </ul>
+                        <div class="card-footer">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5ygd9J9ddIf6qmFhv0k-nYMjLV80MMSy5AkyXCUUALldNYQ/viewform?usp=sharing&ouid=117509111644367157978" class="btn">Begin Journey</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Why "Jnanastotra"?</h2>
+                    <p>It means "A Hymn of Wisdom."</p>
+                    <p>We chose this name because for us, this is about more than sound.</p>
+                    <p>It's about the <strong>wisdom</strong> that comes from a quiet mind.<br>
+                       It's about the <strong>peace</strong> that blooms when you feel connected.<br>
+                       It's about the <strong>strength</strong> you discover inside yourself.</p>
+                    <p>This isn't a performance. It's a practice. And we are here to be your friendly, knowledgeable guide on this beautiful path.</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5ygd9J9ddIf6qmFhv0k-nYMjLV80MMSy5AkyXCUUALldNYQ/viewform?usp=sharing&ouid=117509111644367157978" class="btn">Connect With Us</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1589994965851-a8f479c573a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Peaceful meditation">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2>Ready to Quiet the Noise?</h2>
+            <p>Your first step towards a calmer mind is just a click away.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5ygd9J9ddIf6qmFhv0k-nYMjLV80MMSy5AkyXCUUALldNYQ/viewform?usp=sharing&ouid=117509111644367157978" class="btn">Browse Our Offerings</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Jnana Stotra</h3>
+                    <p>Ancient Wisdom for a Modern, Peaceful Life.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#offerings">Offerings</a></li>
+                        <li><a href="#about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> jnanastotradotcom@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> +91 XXXXX XXXXX</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Based in Bengaluru,India. Teaching Worldwide</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Jnana Stotra - A Brand of KKIB Enterprises
